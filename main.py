@@ -21,13 +21,6 @@ def pobierz_jako_tekst(url):
     with urllib.request.urlopen(url) as response:
         return response.read().decode("utf-8", "ignore")
 
-def pobierz_aktualna_pogode():
-    url = "http://api.openweathermap.org/data/2.5/weather/?units=metric&q=wroclaw&appid=ad90eb11b909915d6cac7b5c5e0e1e10"
-    web = pobierz_jako_tekst(url)
-    dane = json.loads(web)
-    temperatura = dane['main']['temp']
-    ikona = dane['weather'][0]['icon']
-    return temperatura, ikona
 
 class Okno(tk.Frame):
 
@@ -51,12 +44,6 @@ class Okno(tk.Frame):
         self.update()
 
         # tu wpisz swój kod
-        try:
-            temperatura, ikona = pobierz_aktualna_pogode()
-            self.__wyswietl_temperature(temperatura)
-            self.__wyswietl_obrazek_prognozy(ikona)
-        except:
-            messagebox.showerror("Błąd!!", "Nie działa")
 
     def __wyswietl_temperature(self, temperature):
         self.prognoza_temperatura['text'] = "{}℃".format(temperature)
