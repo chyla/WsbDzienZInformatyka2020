@@ -43,6 +43,7 @@ class Okno(tk.Frame):
         self.przycisk.pack_forget()
         self.update()
 
+        url = "http://api.openweathermap.org/data/2.5/weather/?units=metric&q=wroclaw&appid=ad90eb11b909915d6cac7b5c5e0e1e10"
         # tu wpisz swój kod
 
     def __wyswietl_temperature(self, temperature):
