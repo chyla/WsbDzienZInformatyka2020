@@ -37,7 +37,7 @@ class Okno(tk.Frame):
         self.master.title("Prognoza pogody ☀")
         self.pack(fill=tk.BOTH, expand=True)
 
-        self.przycisk = tk.Button(self, text="Pobierz prognozę", bg="white", fg="red", command=self.__obsluz_nacisniecie_przycisku)
+        self.przycisk = tk.Button(self, text="Pobierz prognozę", bg="white", fg="red", command=self.obsluz_nacisniecie_przycisku)
         self.przycisk.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
 
         self.prognoza_obrazek = tk.Label(self)
@@ -46,22 +46,22 @@ class Okno(tk.Frame):
         self.prognoza_temperatura = tk.Label(self)
         self.prognoza_temperatura.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
 
-    def __obsluz_nacisniecie_przycisku(self, *args):
+    def obsluz_nacisniecie_przycisku(self, *args):
         self.przycisk.pack_forget()
         self.update()
 
         # tu wpisz swój kod
         try:
             temperatura, ikona = pobierz_aktualna_pogode()
-            self.__wyswietl_temperature(temperatura)
-            self.__wyswietl_obrazek_prognozy(ikona)
+            self.wyswietl_temperature(temperatura)
+            self.wyswietl_obrazek_prognozy(ikona)
         except:
             messagebox.showerror("Błąd!!", "Nie działa")
 
-    def __wyswietl_temperature(self, temperature):
+    def wyswietl_temperature(self, temperature):
         self.prognoza_temperatura['text'] = "{}℃".format(temperature)
 
-    def __wyswietl_obrazek_prognozy(self, weather_icon):
+    def wyswietl_obrazek_prognozy(self, weather_icon):
         image_file_name = "images/" + weather_icon + ".png"
         self._image_load = Image.open(image_file_name)
         self._image_render = ImageTk.PhotoImage(self._image_load)
