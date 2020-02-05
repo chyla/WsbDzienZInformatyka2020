@@ -30,7 +30,7 @@ class Okno(tk.Frame):
         self.master.title("Prognoza pogody ☀")
         self.pack(fill=tk.BOTH, expand=True)
 
-        self.przycisk = tk.Button(self, text="Pobierz prognozę", bg="white", fg="red", command=self.__obsluz_nacisniecie_przycisku)
+        self.przycisk = tk.Button(self, text="Pobierz prognozę", bg="white", fg="red", command=self.obsluz_nacisniecie_przycisku)
         self.przycisk.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
 
         self.prognoza_obrazek = tk.Label(self)
@@ -39,17 +39,17 @@ class Okno(tk.Frame):
         self.prognoza_temperatura = tk.Label(self)
         self.prognoza_temperatura.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
 
-    def __obsluz_nacisniecie_przycisku(self, *args):
+    def obsluz_nacisniecie_przycisku(self, *args):
         self.przycisk.pack_forget()
         self.update()
 
         url = "http://api.openweathermap.org/data/2.5/weather/?units=metric&q=wroclaw&appid=ad90eb11b909915d6cac7b5c5e0e1e10"
         # tu wpisz swój kod
 
-    def __wyswietl_temperature(self, temperature):
+    def wyswietl_temperature(self, temperature):
         self.prognoza_temperatura['text'] = "{}℃".format(temperature)
 
-    def __wyswietl_obrazek_prognozy(self, weather_icon):
+    def wyswietl_obrazek_prognozy(self, weather_icon):
         image_file_name = "images/" + weather_icon + ".png"
         self._image_load = Image.open(image_file_name)
         self._image_render = ImageTk.PhotoImage(self._image_load)
